@@ -1,10 +1,10 @@
-import Naviguation from "../components/Naviguation"
+import Navigation from "../components/Navigation"
 
 //Composant Accueil
 const   Home = () => {
     return(
         <div className="home">
-            <Naviguation/>
+            <Navigation/>
             <h1>Accueil</h1>
         </div>
     )

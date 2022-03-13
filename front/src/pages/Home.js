@@ -1,8 +1,6 @@
 import {React, useState} from 'react';
 import Navigation from '../components/Navigation';
 
-
-
 const Home = () => {
   const [msg, setMsg] = useState('')
 

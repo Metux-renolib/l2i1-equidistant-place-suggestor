@@ -4,12 +4,11 @@ import Navigation from './Navigation';
 const  Formulaire = () => {
     const [nom, setNom] = useState('');
     const [adresse, setAdresse] = useState('');
-    const [mail, setMail] = useState('');
     const [msg, setMsg] = useState('')
 
     const affiche = () =>{
         alert(
-        'Nom : ' +nom + ' mail : ' +mail+ ' Adresse : ' +adresse
+        nom + 'a bien été enregistré(e) à cette adresse : '+ adresse
         );
     }
     const handleClick = async () => {
@@ -26,8 +25,6 @@ const  Formulaire = () => {
         <form action="/" method="post">
             <label>Nom :</label>
             <input type='text' onChange={(e) => { setNom(e.target.value);}} placeholder='Rentrez votre nom'/>
-            <label>Mail :</label>
-            <input type='text' onChange={(e) => { setMail(e.target.value);}} placeholder='Rentrez votre e-mail'/>
             <label>Adresse  : </label>
             <input type='text' onChange={(e) => { setAdresse(e.target.value);}} placeholder='Rentrez une adresse'/>
         </form>

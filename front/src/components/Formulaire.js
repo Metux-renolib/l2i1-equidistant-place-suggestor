@@ -30,7 +30,7 @@ const  Formulaire = () => {
         <form action="/" method="post">
             <label>Nom :</label>
             <input type='text' onChange={(e) => { setNom(e.target.value);}} placeholder='Rentrez votre nom'/>
-            <label>Adresse 1  : </label>
+            <label>Adresse : </label>
             <input type='text' onChange={(e) => { setAdresse(e.target.value);}} placeholder='Rentrez une adresse'/>
         </form>
         <input type="submit" value="Envoyer" onClick={handleClick} />

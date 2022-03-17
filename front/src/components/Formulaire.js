@@ -8,28 +8,28 @@ const  Formulaire = () => {
 
     const handleSubmit = () => {
         const user1 = {
-            nom : this.state.name1,
-            adresse : this.state.adresse1
+            nom : state.name1,
+            adresse : state.adresse1
         };
         const user2 = {
-            nom : this.state.name2,
-            adresse : this.state.adresse2
+            nom : state.name2,
+            adresse : state.adresse2
         };
         const user3 = {
-            nom : this.state.name3,
-            adresse : this.state.adresse3
+            nom : state.name3,
+            adresse : state.adresse3
         };
         const user4 = {
-            nom : this.state.name4,
-            adresse : this.state.adresse4
+            nom : state.name4,
+            adresse : state.adresse4
         };
         const user5 = {
-            nom : this.state.name5,
-            adresse : this.state.adresse5
+            nom : state.name5,
+            adresse : state.adresse5
         };
         const user6 = {
-            nom : this.state.name6,
-            adresse : this.state.adresse6
+            nom : state.name6,
+            adresse : state.adresse6
         };
         axios.post('http://localhost:3000/formulaire', { user1,user2,user3,user4,user5,user6 })
             .then(res => {

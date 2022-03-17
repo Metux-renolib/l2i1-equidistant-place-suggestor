@@ -8,28 +8,28 @@ const  Formulaire = () => {
 
     const handleSubmit = () => {
         const user1 = {
-            nom : state.name1,
-            adresse : state.adresse1
+            nom : document.getElementById('name1'),
+            adresse : document.getElementById('adresse1')
         };
         const user2 = {
-            nom : state.name2,
-            adresse : state.adresse2
+            nom : document.getElementById('name2'),
+            adresse : document.getElementById('adresse2')
         };
         const user3 = {
-            nom : state.name3,
-            adresse : state.adresse3
+            nom : document.getElementById('name3'),
+            adresse : document.getElementById('adresse3')
         };
         const user4 = {
-            nom : state.name4,
-            adresse : state.adresse4
+            nom : document.getElementById('name4'),
+            adresse : document.getElementById('adresse4')
         };
         const user5 = {
-            nom : state.name5,
-            adresse : state.adresse5
+            nom : document.getElementById('name5'),
+            adresse : document.getElementById('adresse5')
         };
         const user6 = {
-            nom : state.name6,
-            adresse : state.adresse6
+            nom : document.getElementById('name6'),
+            adresse : document.getElementById('adresse6')
         };
         axios.post('http://localhost:3000/formulaire', { user1,user2,user3,user4,user5,user6 })
             .then(res => {
@@ -44,7 +44,7 @@ const  Formulaire = () => {
             <label>Nom 1 :</label>
             <input type='text' name ='name1' onChange={(e) => { setNom(e.target.value);}} placeholder='Rentrez un nom'/>
             <label>Adresse 1  : </label>
-            <input type='text' name ='adresse1' onChange={(e) => { setAdresse(e.target.value);}} placeholder='Rentrez une adresse'/>
+            <input type='text' name ='adresse1' onChange={(e) => { setAdresse(e.target.value);}} valueplaceholder='Rentrez une adresse'/>
 
             <br/>
 

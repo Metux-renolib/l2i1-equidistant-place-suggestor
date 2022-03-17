@@ -42,12 +42,6 @@ const  Formulaire = () => {
         <div id="formulaire">
         <Navigation/>
         <form action="/" method="post">
-<<<<<<< HEAD
-            <label>Nom :</label>
-            <input type='text' onChange={(e) => { setNom(e.target.value);}} placeholder='Rentrez votre nom'/>
-            <label>Adresse : </label>
-            <input type='text' onChange={(e) => { setAdresse(e.target.value);}} placeholder='Rentrez une adresse'/>
-=======
             <label>Nom 1 :</label>
             <input type='text' name ='name1' onChange={(e) => { setNom(e.target.value);}} placeholder='Rentrez votre nom'/>
             <label>Adresse 1  : </label>
@@ -78,7 +72,6 @@ const  Formulaire = () => {
             <label>Adresse 6  : </label>
             <input type='text' name ='adresse6' onChange={(e) => { setAdresse(e.target.value);}} placeholder='Rentrez une adresse'/>
 
->>>>>>> 1d8f2606b03e54e0756ca514066c98106a71bf32
         </form>
         <input type="submit" value="Envoyer" />
     </div>

@@ -16,20 +16,20 @@ const  Formulaire = () => {
             adresse : this.state.adresse2
         };
         const user3 = {
-            nom : this.state.name2,
-            adresse : this.state.adresse2
+            nom : this.state.name3,
+            adresse : this.state.adresse3
         };
         const user4 = {
-            nom : this.state.name2,
-            adresse : this.state.adresse2
+            nom : this.state.name4,
+            adresse : this.state.adresse4
         };
         const user5 = {
-            nom : this.state.name2,
-            adresse : this.state.adresse2
+            nom : this.state.name5,
+            adresse : this.state.adresse5
         };
         const user6 = {
-            nom : this.state.name2,
-            adresse : this.state.adresse2
+            nom : this.state.name6,
+            adresse : this.state.adresse6
         };
         axios.post('http://localhost:3000/formulaire', { user1,user2,user3,user4,user5,user6 })
             .then(res => {

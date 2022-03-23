@@ -4,37 +4,37 @@ import axios from 'axios';
 
 const  Formulaire = () => {
     const [nom, setNom] = useState('');
-    const [adresse, setAdresse] = useState('');
+    const [adresse, setAdresse] = useState(''); 
 
     const handleSubmit = () => {
         const user1 = {
-            nom : document.getElementById('name1'),
-            adresse : document.getElementById('adresse1')
+            nom : nom[0],
+            adresse : adresse[0]
         };
         const user2 = {
-            nom : document.getElementById('name2'),
-            adresse : document.getElementById('adresse2')
+            nom : nom[1],
+            adresse : adresse[1]
         };
         const user3 = {
-            nom : document.getElementById('name3'),
-            adresse : document.getElementById('adresse3')
+            nom : nom[2],
+            adresse : adresse[2]
         };
         const user4 = {
-            nom : document.getElementById('name4'),
-            adresse : document.getElementById('adresse4')
+            nom : nom[3],
+            adresse : adresse[3]
         };
         const user5 = {
-            nom : document.getElementById('name5'),
-            adresse : document.getElementById('adresse5')
+            nom : nom[4],
+            adresse : adresse[4]
         };
         const user6 = {
-            nom : document.getElementById('name6'),
-            adresse : document.getElementById('adresse6')
+            nom : nom[5],
+            adresse : adresse[5]
         };
         axios.post('http://localhost:3000/formulaire', { user1,user2,user3,user4,user5,user6 })
-            .then(res => {
+            .then((res) => {
                 console.log(res);
-            })
+            });
       }
 
     return (

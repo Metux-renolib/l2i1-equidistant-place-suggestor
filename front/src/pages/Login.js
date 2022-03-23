@@ -5,7 +5,7 @@ const Login = () => {
     return (
         <div>
             <Navigation/>
-            <h1>Page de connexion</h1>
+            <h1>Connexion</h1>
         </div>
     );
 };

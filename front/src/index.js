@@ -1,8 +1,6 @@
-//ce fichier est nécessaire pour faire le lien entre le back et le front
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import "./styles/index.scss";
 
 ReactDOM.render(
   <React.StrictMode>

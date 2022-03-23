@@ -5,8 +5,6 @@ const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json({limit : '500kb'}))
-app.use(express.urlencoded({ extended: true }))
 
 app.post("/formulaire",(req,res)=>{
   console.log(req.body)

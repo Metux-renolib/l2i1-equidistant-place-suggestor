@@ -19,12 +19,22 @@ function Formulaire() {
         setInputFields([...inputFields, newfield])
     }
 
+    const dispo = () =>{
+      for (let i = 0; i<inputFields.length ; i++){
+        const str = inputFields[i].disponibilité.split('-')
+        for(let j = 0; str.length ; j++){
+          console.log('bonjou')
+        }
+      }
+    }
+
     const submit = (e) => {
-        console.log(inputFields)
-        axios.post('http://localhost:3000/formulaire', { inputFields })
-            .then((res) => {
-                console.log(res);
-            });
+      dispo()
+      console.log(inputFields)
+      axios.post('http://localhost:3000/formulaire', { inputFields })
+          .then((res) => {
+              console.log(res);
+          });
     }
 
     const removeFields = (index) => {
@@ -48,23 +58,23 @@ function Formulaire() {
               />
               <input
                 name='adresse'
-                placeholder='Adresse'
+                placeholder='Adresse de départ'
                 value={input.adresse}
                 onChange={event => handleFormChange(index, event)}
               />
               <input
                 name='disponibilité'
-                placeholder='Disponibilité'
+                placeholder='Disponibilité EX : lundi-jeudi'
                 value={input.disponibilité}
                 onChange={event => handleFormChange(index, event)}
               />
-                <button onClick={() => removeFields(index)}>Remove</button>
+                <button onClick={() => removeFields(index)}>Supprimer</button>
             </div>
           )
         })}
       </form>
-      <button onClick={addFields}>Add More..</button>
-      <button onClick={submit}>Submit</button>
+      <button onClick={addFields}>Ajouter...</button>
+      <button onClick={submit}>Envoyer</button>
     </div>
   );
 }

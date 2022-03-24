@@ -19,17 +19,16 @@ function Formulaire() {
         setInputFields([...inputFields, newfield])
     }
 
-    const dispo = () =>{
+    /*const dispo = () =>{
       for (let i = 0; i<inputFields.length ; i++){
         const str = inputFields[i].disponibilité.split('-')
         for(let j = 0; str.length ; j++){
           console.log('bonjou')
         }
       }
-    }
+    }*/
 
     const submit = (e) => {
-      dispo()
       console.log(inputFields)
       axios.post('http://localhost:3000/formulaire', { inputFields })
           .then((res) => {

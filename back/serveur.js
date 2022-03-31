@@ -1,18 +1,18 @@
 const PORT = 5000
 const express = require('express');
 const app = express();
-const bodyParser = require("body-parser");
+const cors = require('cors');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended : true}));
+app.use(express.json());
+app.use(cors());
 
-app.post("/formulaire",(req,res)=>{
-  console.log(req.body)
-  res.json(req.body)
-})
 
-app.get("/api",(req,res) =>{
-  res.send("hello");
+app.post("/formulaire",async (req,res)=>{
+  const tab = req.body.inputFields
+  const jour = req.body.dispoFinale
+  console.log(tab)
+  console.log(jour)
 })
 
 app.listen(5000,()=>{console.log('server started at port 5000')});

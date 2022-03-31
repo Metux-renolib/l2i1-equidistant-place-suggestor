@@ -1,21 +1,18 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
     return (
-        <div className = "navigation">
-            <NavLink exact to="/" activeclassname = "nav-active">
-            </NavLink>
-            <NavLink exact to="about" activeclassname = "nav-active">
-            </NavLink>
-            <NavLink exact to="login" activeclassname = "nav-active">
-            </NavLink>
-            <NavLink exact to="formulaire" activeclassname = "nav-active">
-            </NavLink>
-            <NavLink exact to="contact" activeclassname = "nav-active">
-            </NavLink>
-        </div>
-    );
-};
+        <nav className="nav">
+          <Link exact="true" to="/" activeclassname="nav_active" id="link"/>
+          <Link
+            exact="true"
+            to="/contact"
+            activeclassname="nav_active"
+            id="link"
+          />
+        </nav>
+  );
+}
 
 export default Navigation;

@@ -9,6 +9,7 @@ const Home = () => {
     <Navigation/>
     <h1>Commençons ! Veuillez rentrez toutes les informations nécessaires : </h1>
     <Formulaire/>
+    <Map/>
   </div>
   );
 };

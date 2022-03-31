@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Navigation from './Navigation';
 import axios from 'axios';
 import Geocode from "react-geocode";
 function Formulaire() {
@@ -141,7 +140,6 @@ function Formulaire() {
 
   return (
     <div className="Formulaire">
-      <Navigation/>
       <form>
       {inputFields.map((input, index) => {
           return (

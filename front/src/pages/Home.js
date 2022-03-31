@@ -2,7 +2,6 @@ import React from 'react';
 import Navigation from '../components/Navigation';
 import Map from '../components/Map';
 import Formulaire from '../components/Formulaire';
-import SearchLocationInput from '../components/SearchLocationInput';
 
 const Home = () => {
   return (

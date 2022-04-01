@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Geocode from "react-geocode";
+import SearchLocationInput from './SearchLocationInput';
 function Formulaire() {
 
     const [inputFields, setInputFields] = useState([
@@ -150,12 +151,7 @@ function Formulaire() {
                 value={input.name}
                 onChange={event => handleFormChange(index, event)}
               />
-              <input
-                name='adresse'
-                placeholder='Adresse de départ'
-                value={input.adresse}
-                onChange={event => handleFormChange(index, event)}
-              />
+              <SearchLocationInput/>
               <input
                 name='disponibilité'
                 placeholder='Disponibilité EX : lundi-jeudi'

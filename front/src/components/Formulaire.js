@@ -153,7 +153,7 @@ function Formulaire() {
               />
               <input
                 name='adresse'
-                placeholder='Adresse'
+                placeholder='Adresse de départ'
                 value={input.adresse}
                 onChange={event => handleFormChange(index, event)}
               />

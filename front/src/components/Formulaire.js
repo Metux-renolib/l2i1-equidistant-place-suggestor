@@ -151,7 +151,12 @@ function Formulaire() {
                 value={input.name}
                 onChange={event => handleFormChange(index, event)}
               />
-              <SearchLocationInput/>
+              <input
+                name='adresse'
+                placeholder='Adresse'
+                value={input.adresse}
+                onChange={event => handleFormChange(index, event)}
+              />
               <input
                 name='disponibilité'
                 placeholder='Disponibilité EX : lundi-jeudi'

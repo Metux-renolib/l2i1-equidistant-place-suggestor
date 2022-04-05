@@ -5,8 +5,9 @@ import Formulaire from '../components/Formulaire';
 const Home = () => {
   return (
   <div className='Home'>
-    <h1>Commençons ! Veuillez rentrez toutes les informations nécessaires : </h1>
+    <h1>Commençons ! Veuillez rentrer toutes les informations nécessaires : </h1>
     <Formulaire/>
+    <Map/>
   </div>
   );
 };

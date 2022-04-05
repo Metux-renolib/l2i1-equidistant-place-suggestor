@@ -38,12 +38,6 @@ function Map() {
     }
   };
   
-  useEffect(() => {
-    window.addEventListener("click", getAdr);
-    return () => {
-      window.removeEventListener("click", getAdr);
-    };
-  }, [markers]);
 
   
   const mapRef = React.useRef();
@@ -65,6 +59,7 @@ function Map() {
         zoom={8}
         center={center}
         onLoad={onMapLoad}
+        onClick={getAdr}
         
       >
         {markers.map((marker) => (
@@ -74,10 +69,6 @@ function Map() {
             
           />
         ))}
-        <Marker
-        position={{lat: 48.8588897,
-          lng: 2.320041,}}
-        />
         
       </GoogleMap>
     </div>

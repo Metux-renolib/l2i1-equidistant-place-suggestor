@@ -31,8 +31,9 @@ function Map() {
   const [markers, setMarkers] = React.useState([]);
   const getAdr = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/map");
+      const res = await axios.get("http://localhost:5000/algo");
       setMarkers(res.data);
+      console.log(res.data);
     } catch (e) {
       console.log(e);
     }

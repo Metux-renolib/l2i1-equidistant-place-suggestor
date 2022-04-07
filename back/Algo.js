@@ -1,4 +1,6 @@
-function algo(tab) {
+const axios = require("axios").default;
+
+async function algo(tab) {
     //ALGORITHME : traitement des coordonnées pour trouver le bowling équidistant
     //Création de l'objet coordonnées
     function CoordonnesAdresse(lat, lng) {
@@ -36,6 +38,12 @@ function algo(tab) {
     }
     nbAdresses = tabAdresses.length; 
 
+    // tabAdresses.push(new CoordonnesAdresse(48.89144266604201, 2.2524894839420146));
+    // tabAdresses.push(new CoordonnesAdresse(48.85555001160246, 2.3325911974317024));
+    // tabAdresses.push(new CoordonnesAdresse(49.01270649675696, 1.913263539766621));
+    // nbAdresses = 3;
+
+
     //Créer tous les cercles passant par deux points
     //Calcul des diamètres de chaque cercle formé par les points deux à deux
     let tabDiametresCercles = new Array(); //Tableau contenant tous les diamètres de tous les cercles formés
@@ -67,7 +75,6 @@ function algo(tab) {
         for (let j = 0; j < tabAdresses.length; j++) {
             if (Distance(tabCentresCercles[i].lat, tabCentresCercles[i].lng, tabAdresses[j].lat, tabAdresses[j].lng) <= tabRayonsCercles[i]) {
                 compteur++; //Si la distance Point-Centre est plus petite ou égale que le rayon, le point appartient au cercle --> j'indente mon compteur
-                console.log(compteur);
             }
         }
         if (compteur == nbAdresses) {
@@ -88,11 +95,34 @@ function algo(tab) {
         }
     }
 
-    let tabFinal = new Array();
+    var tabFinal = new Array();
     tabFinal = tabAdresses;
-    tabFinal.push(pointEquidistant);
 
-    return tabFinal;
+    //Comparaison avec les bwolings
+    let adrLL = pointEquidistant.lat.toString() + '%2C' + pointEquidistant.lng.toString();
+
+    const options = {
+    method: 'GET',
+    url: 'https://api.foursquare.com/v3/places/nearby?ll='+adrLL+'&query=bowling&limit=4',
+    headers: {
+        Accept: 'application/json',
+        Authorization: 'fsq3/QTzFNKxW4aUWKO/KWXHRoJ8012TTDh+7ERFVn6WXGM='
+    }
+    };
+    
+    let res = await axios.request(options).then(function (response) {
+        tabFinal.push(new CoordonnesAdresse(response.data.results[0].geocodes.main.latitude, response.data.results[0].geocodes.main.longitude));
+        // tabFinal.push(response.data.results[0].location.formatted_address);
+        //tabFinal.push(new CoordonnesAdresse(response.data.results[1].geocodes.main.latitude, response.data.results[1].geocodes.main.longitude));
+        //tabFinal.push(new CoordonnesAdresse(response.data.results[2].geocodes.main.latitude, response.data.results[2].geocodes.main.longitude));
+        console.log("Tab final algo :", tabFinal);
+        return tabFinal;
+
+    }).catch(function (error) {
+        console.error(error);
+    });
+
+return res;
 }
 
 module.exports = {

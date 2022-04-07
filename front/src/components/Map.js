@@ -36,6 +36,9 @@ function Map() {
   const getAdr = async () => {
     try {
       const res = await axios.get("http://localhost:5000/algo");
+      //Affichage des PINs des adresses des participants et bowlings
+      // let adresses = res.data;
+      // let bowling = adresses.pop(); //je récupère l'adresse du bowling dans la data
       setMarkers(res.data);
       
       for(var i=0;i<res.data.length -1;i++){
@@ -73,7 +76,7 @@ function Map() {
   }, []);
 
 
-
+  
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 

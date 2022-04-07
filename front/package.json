@@ -18,9 +18,14 @@
     "indent-string": "^5.0.0",
     "isomorphic-fetch": "^3.0.0",
     "node-sass": "^7.0.1",
+<<<<<<< HEAD
     "react": "^17.0.2",
     "react-bootstrap-validation": "^0.1.11",
     "react-dom": "^17.0.2",
+=======
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+>>>>>>> 4ff1b06561bda8dd4801c5ad1a10f99efb7a8e7f
     "react-geocode": "^0.2.3",
     "react-google-autocomplete": "^2.6.1",
     "react-google-maps": "^9.4.5",

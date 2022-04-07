@@ -2,6 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import Geocode from "react-geocode";
 import SearchLocationInput from './SearchLocationInput';
+import '../styles/Formulaire.css'
+
 function Formulaire() {
 
     const [inputFields, setInputFields] = useState([
@@ -141,35 +143,43 @@ function Formulaire() {
 
   return (
     <div className="Formulaire">
-      <form>
-      {inputFields.map((input, index) => {
-          return (
-            <div key={index}>
-              <input
-                name='name'
-                placeholder='Nom'
-                value={input.name}
-                onChange={event => handleFormChange(index, event)}
-              />
-                <input
-                  name='adresse'
-                  placeholder='Adresse de départ'
-                  value={input.adresse}
-                  onChange={event => handleFormChange(index, event)}
-                />
-              <input
-                name='disponibilité'
-                placeholder='Disponibilité EX : lundi-jeudi'
-                value={input.disponibilité}
-                onChange={event => handleFormChange(index, event)}
-              />
-                <button onClick={() => removeFields(index)}>Supprimer</button>
-            </div>
-          )
-        })}
-      </form>
-      <button onClick={addFields}>Ajouter...</button>
-      <button onClick={submit}>Envoyer</button>
+      <fieldset>
+        <legend>Informations des participants à la sortie</legend>
+        <form>
+        {inputFields.map((input, index) => {
+            return (
+                  <div key={index}>
+                    <input
+                      id="entre"
+                      class='entree'
+                      name='name'
+                      placeholder='Nom'
+                      value={input.name}
+                      onChange={event => handleFormChange(index, event)}
+                    />
+                    <input
+                      class='entree'
+                      name='adresse'
+                      placeholder='Adresse de départ'
+                      value={input.adresse}
+                      onChange={event => handleFormChange(index, event)}
+                    />
+                    <input
+                      class='entree'
+                      name='disponibilité'
+                      placeholder='Disponibilités (ex : lundi-jeudi)'
+                      value={input.disponibilité}
+                      onChange={event => handleFormChange(index, event)}
+                    />
+                      <button  onClick={() => removeFields(index)}>Supprimer</button>
+                      <br/>
+                  </div>
+            )
+          })}
+        </form>
+      </fieldset><br/>
+      <button  class='entree' onClick={addFields}>Ajouter un participant</button>
+      <button onClick={submit}>Lancer la recherche !</button>
     </div>
   );
 }

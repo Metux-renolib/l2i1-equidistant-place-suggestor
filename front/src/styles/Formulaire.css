@@ -1,0 +1,28 @@
+.entree{
+    margin-right: 0.5em;
+}
+
+fieldset{
+    box-sizing: border-box;
+    width : 50%;
+    padding: 5px;
+    
+}
+
+h1{
+    font-family: 'Merriweather', serif;
+    color : rgb(94, 56, 113);
+}
+
+h2{
+    font-family : 'Verdana';
+    color : rgb(20, 20, 78);
+}
+
+legend{
+    font-family : 'Merriweather', serif;
+    color : darkgreen;
+    font-weight : bold;
+}
+
+  

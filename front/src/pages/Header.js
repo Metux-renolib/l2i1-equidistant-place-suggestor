@@ -11,7 +11,6 @@ const Header = () => {
             <div id="navbarSupportedContent" className="collapse navbar-collapse">
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item active"><a href="/" className="nav-link text-uppercase font-weight-bold">Home <span className="sr-only"></span></a></li>
-                    <li className="nav-item"><a href="/login" className="nav-link text-uppercase font-weight-bold">Login</a></li>
                     <li className="nav-item"><a href="/about" className="nav-link text-uppercase font-weight-bold">About</a></li> 
                     <li className="nav-item"><a href="/contact" className="nav-link text-uppercase font-weight-bold">Contact</a></li>
                 </ul>

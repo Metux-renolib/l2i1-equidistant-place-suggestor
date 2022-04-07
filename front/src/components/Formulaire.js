@@ -131,7 +131,7 @@ function Formulaire() {
           console.log(error)
         }
       }
-      }
+    }
 
     const removeFields = (index) => {
         let data = [...inputFields];
@@ -151,12 +151,12 @@ function Formulaire() {
                 value={input.name}
                 onChange={event => handleFormChange(index, event)}
               />
-              <input
-                name='adresse'
-                placeholder='Adresse de départ'
-                value={input.adresse}
-                onChange={event => handleFormChange(index, event)}
-              />
+                <input
+                  name='adresse'
+                  placeholder='Adresse de départ'
+                  value={input.adresse}
+                  onChange={event => handleFormChange(index, event)}
+                />
               <input
                 name='disponibilité'
                 placeholder='Disponibilité EX : lundi-jeudi'

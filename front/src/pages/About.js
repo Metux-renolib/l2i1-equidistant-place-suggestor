@@ -5,7 +5,7 @@ const About = () => {
     return (
         <div>
             <h1>A propos</h1>
-            <p>Cette application a été confectionnée pour l'élaboration de notre projet informatique de notre deuxième année de licence. Pour plus d'informations sur les participants de ce projet, rendez-vous sur la page contact.</p>
+            <p>Notre application servira à mieux organiser les sorties entre amis, en proposant à l’utilisateur un lieu de sortie à équidistance des adresses des participants. Cela permet de se mettre d’accord rapidement et facilement sur un lieu où sortir, sans se préoccuper de la recherche d’un lieu qui plaira à tout le monde.</p>
         </div>
     );
 };

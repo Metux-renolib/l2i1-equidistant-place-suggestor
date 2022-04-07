@@ -9,7 +9,6 @@ import {
 import{useEffect, useState} from "react";
 import axios from "axios";
 
-
 const libraries = ["places"];
 const mapContainerStyle = {
   height: "50vh",
@@ -20,8 +19,10 @@ const center = {
   lat: 48.8588897,
   lng: 2.320041,
 };
-
-
+const point={
+    lat:48.858093,
+    lng:	2.294694,
+}
 
 function Map() {
   const { isLoaded, loadError } = useLoadScript({
@@ -30,24 +31,18 @@ function Map() {
   });
   
   const [markers, setMarkers] = React.useState([]);
-  const [routes]=React.useState([]);
-  const [times]=React.useState([]);
-  const [distances]=React.useState([]);
+  
+  const [directions, setDirections] = React.useState([]);
   const getAdr = async () => {
     try {
       const res = await axios.get("http://localhost:5000/algo");
       setMarkers(res.data);
       
-      for(var i=0;i<res.data.length -1;i++){
-          calculateRoute(res.data[i],res.data[res.data.length -1]);
-      }
-      
     } catch (e) {
       console.log(e);
     }
   };
-   
-  
+
   async function calculateRoute(adresse,point) {
     
     // eslint-disable-next-line no-undef
@@ -58,15 +53,35 @@ function Map() {
       // eslint-disable-next-line no-undef
       travelMode: google.maps.TravelMode.DRIVING,
     })
-    routes.push(results);
-    distances.push(results.routes[0].legs[0].distance.text);
-    times.push(results.routes[0].legs[0].duration.text);
+    setDirections(results)
+    /*setDistance(results.routes[0].legs[0].distance.text)
+    setDuration(results.routes[0].legs[0].duration.text)*/
   }
 
+  for(let j = 0; j<markers.length -1 ; j++){
+       calculateRoute(markers[i],markers[markers.length -1]);
+    }
 
 
   const mapRef = React.useRef();
-  
+ /* const fetchDirections = (marker) => {
+    if (!point ) return;
+   //eslint-disable-next-line no-undef
+    const service = new google.maps.DirectionsService();
+    service.route(
+      {
+        origin: marker,
+        destination: point,
+        //eslint-disable-next-line no-undef
+        travelMode: google.maps.TravelMode.DRIVING,
+      },
+      (result, status) => {
+        if (status === "OK" && result) {
+          setDirections(result);
+        }
+      }
+    );
+  };*/
 
   const onMapLoad = React.useCallback((map) => {
     mapRef.current = map;
@@ -88,9 +103,10 @@ function Map() {
         onLoad={onMapLoad}
         onClick={getAdr}    
       >
-        {routes.map((mark ) => (
+        {directions.map((direction) => (
+          
             <DirectionsRenderer
-              directions={mark}
+              directions={direction}
               options={{
                 polylineOptions: {
                   zIndex: 50,
@@ -99,32 +115,20 @@ function Map() {
                 },
               }}
             />
-            ))
-          }
-           
-           
-        {markers.map((marker) => {
+            ) )} 
         
-           <Marker
-           key={`${marker.lat}-${marker.lng}`}
-           position={{ lat: marker.lat, lng: marker.lng }}
-     
-         />
-         if(marker==markers[markers.length -1]){
+        {markers.map((marker) => (
+          
           
           <Marker
             key={`${marker.lat}-${marker.lng}`}
             position={{ lat: marker.lat, lng: marker.lng }}
-            icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
-            
+          
           />
-      
-           }
-           
-          })
+          
+        ))
       }
-      
-     
+        
       </GoogleMap>
     </div>
   );

@@ -12,6 +12,12 @@ let jour = " ";
 let tab = new Array();
 let tabFinal = new Array();
 
+app.use('/login', (req, res) => {
+  res.send({
+    token: 'test123'
+  });
+});
+
 app.post("/formulaire",async (req,res)=>{
   tab = req.body.inputFields
   jour = req.body.dispoFinale

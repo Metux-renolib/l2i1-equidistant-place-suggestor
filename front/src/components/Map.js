@@ -33,6 +33,8 @@ function Map() {
   const [routes]=React.useState([]);
   const [times]=React.useState([]);
   const [distances]=React.useState([]);
+  const [selected, setSelected] = React.useState(null);
+  const [pings]= React.useState([]);
   const getAdr = async () => {
     try {
       const res = await axios.get("http://localhost:5000/algo");
@@ -41,15 +43,15 @@ function Map() {
       for(var i=0;i<res.data.length -1;i++){
           calculateRoute(res.data[i],res.data[res.data.length -1]);
       }
+      ping();
       
     } catch (e) {
       console.log(e);
     }
   };
-   
-  
+
   async function calculateRoute(adresse,point) {
-    
+          
     // eslint-disable-next-line no-undef
     const directionsService = new google.maps.DirectionsService()
     const results = await directionsService.route({
@@ -63,7 +65,13 @@ function Map() {
     times.push(results.routes[0].legs[0].duration.text);
   }
 
-
+ function ping()
+ {
+   for(var j=0;j<markers.length -1;j++){
+      pings.push(markers[j]);
+   }
+   
+ }
 
   const mapRef = React.useRef();
   
@@ -79,7 +87,7 @@ function Map() {
 
   return (
     <div>
-
+       
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
@@ -97,35 +105,55 @@ function Map() {
                   strokeColor: "#1976D2",
                   strokeWeight: 5,
                 },
-              }}
+              }
+            }              
             />
+            
             ))
           }
+         
+                 
+         {selected ?pings.map((marker,i=0) => (
            
+           <InfoWindow
+           position={marker}
+          
+           onCloseClick={() => {
+             setSelected(null);
+           }}
            
-        {markers.map((marker) => {
-        
+         >
+           <div>
+             
+           <p>  Distance: {distances[i]} </p>
+           <p>Duree: {times[i]} </p>
+              
+           </div>
+           
+         </InfoWindow>
+          
+                
+         ))
+          
+        :null } 
+          
+           
+        {markers.map((marker) => (
            <Marker
            key={`${marker.lat}-${marker.lng}`}
            position={{ lat: marker.lat, lng: marker.lng }}
-     
-         />
-         if(marker==markers[markers.length -1]){
-          
-          <Marker
-            key={`${marker.lat}-${marker.lng}`}
-            position={{ lat: marker.lat, lng: marker.lng }}
-            icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
-            
-          />
-      
-           }
+           onClick={() => {
+            setSelected(marker);
            
-          })
+          }
+        }
+      />
+        
+           
+        ))
       }
-      
-     
       </GoogleMap>
+   
     </div>
   );
 }

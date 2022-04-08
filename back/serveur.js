@@ -26,10 +26,10 @@ app.post("/formulaire",async (req,res)=>{
 })
 
 app.get("/algo", async(req, res)=>{
-  tabFinal = algo(tab)
-  console.log("TabFinal" + tabFinal);
-  console.log("JSON " + JSON.stringify(tabFinal));
-  res.send(JSON.stringify(tabFinal));
+  await algo(tab).then(tabFinal => {
+    console.log("TabFinal serveur" , tabFinal);
+    res.send(JSON.stringify(tabFinal));
+  });
 })  
 
 app.listen(5000,()=>{console.log('server started at port 5000')});

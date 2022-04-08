@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Geocode from "react-geocode";
+<<<<<<< HEAD
 import SearchLocationInput from './SearchLocationInput';
 
+=======
+// import SearchLocationInput from './SearchLocationInput';
+import '../styles/Formulaire.css'
+>>>>>>> 58613509a521bacb981af104b466f8735fde915c
 
 function Formulaire() {
 
@@ -67,7 +72,7 @@ function Formulaire() {
           }
         }
         if(keepdispo !== str.length){
-          alert('Erreur : veuillez rentrer un jour valable');
+          alert('Erreur ! Veuillez rentrer un jour valable (ex : lundi-mardi-vendredi');
           console.error('erreur');
           inputFields[i].disponibilité = undefined;
           return final;
@@ -150,7 +155,6 @@ function Formulaire() {
             return (
                   <div key={index}>
                     <input
-                      id="entre"
                       class='entree'
                       name='name'
                       placeholder='Nom'
@@ -171,7 +175,7 @@ function Formulaire() {
                       value={input.disponibilité}
                       onChange={event => handleFormChange(index, event)}
                     />
-                      <button  onClick={() => removeFields(index)}>Supprimer</button>
+                      <button onClick={() => removeFields(index)}>Supprimer</button>
                       <br/>
                   </div>
             )

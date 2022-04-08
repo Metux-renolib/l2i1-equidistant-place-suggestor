@@ -1,13 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Geocode from "react-geocode";
-<<<<<<< HEAD
-import SearchLocationInput from './SearchLocationInput';
-
-=======
 // import SearchLocationInput from './SearchLocationInput';
 import '../styles/Formulaire.css'
->>>>>>> 58613509a521bacb981af104b466f8735fde915c
 
 function Formulaire() {
 

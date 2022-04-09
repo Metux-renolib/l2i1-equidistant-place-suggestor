@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const { algo } = require('./Algo');
+const { verifLogin } = require('./verifLogin')
 
 app.use(express.urlencoded({extended : true}));
 app.use(express.json());
@@ -13,9 +14,17 @@ let tab = new Array();
 let tabFinal = new Array();
 
 app.use('/login', (req, res) => {
-  res.send({
-    token: 'test123'
-  });
+  if(verifLogin(req.body.username,req.body.password)=== true){
+    res.send({
+      token : req.body.username
+    })
+  }
+  if(verifLogin(req.body.username,req.body.password)=== false){
+    res.send({
+      token : 'erreur'
+    })
+  }
+  
 });
 
 app.post("/formulaire",async (req,res)=>{

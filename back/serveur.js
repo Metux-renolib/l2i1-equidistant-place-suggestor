@@ -3,7 +3,8 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const { algo } = require('./Algo');
-const { verifLogin } = require('./verifLogin')
+const { verifLogin } = require('./verifLogin');
+const { register } = require('./register');
 
 app.use(express.urlencoded({extended : true}));
 app.use(express.json());
@@ -24,7 +25,13 @@ app.use('/login', (req, res) => {
       token : 'erreur'
     })
   }
-  
+});
+
+app.use('/register',(req,res) =>{
+  register(req.body.username,req.body.password);
+  res.send({
+    token : req.body.username
+  })
 });
 
 app.post("/formulaire",async (req,res)=>{

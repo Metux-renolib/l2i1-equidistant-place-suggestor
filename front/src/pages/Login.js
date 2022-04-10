@@ -2,7 +2,18 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 async function loginUser(credentials) {
-    return fetch('http://localhost:5000/login', {
+  return fetch('http://localhost:5000/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+    .then(data => data.json())
+}
+
+async function registerUser(credentials) {
+    return fetch('http://localhost:5000/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -10,7 +21,7 @@ async function loginUser(credentials) {
       body: JSON.stringify(credentials)
     })
       .then(data => data.json())
-   }
+}
 
 const Login = ({ setToken }) => {
   const [username, setUserName] = useState();
@@ -22,16 +33,21 @@ const Login = ({ setToken }) => {
         username,
         password
       });
-      console.log(token)
         if(token.token === 'erreur'){
           alert('Nom ou mot de passe incorrect')
         }
         else{
           setToken(token);
         }
-    }
+  }
+
   const handleSubmitRegister = async e => {
-    
+    e.preventDefault();
+    const token = await registerUser({
+      username,
+      password
+    });
+    setToken(token);
   }
 
 

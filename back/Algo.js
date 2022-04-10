@@ -106,7 +106,7 @@ async function algo(tab) {
     url: 'https://api.foursquare.com/v3/places/nearby?ll='+adrLL+'&query=bowling&limit=4',
     headers: {
         Accept: 'application/json',
-        Authorization: 'fsq3A6ESygVu0nrmyjllk14PHnXMRbopaPNJvRib/tYiK3A='
+        Authorization: ''
     }
     };
     

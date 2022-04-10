@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import '../styles/Login.css'
 
 async function loginUser(credentials) {
   return fetch('http://localhost:5000/login', {
@@ -52,36 +53,38 @@ const Login = ({ setToken }) => {
 
 
   return (
-    <div>
-      <form onSubmit={handleSubmitLogin}>
-          <label>
-              <h3>Connexion</h3>
-              <p>Nom</p>
-              <input type="text" onChange={e => setUserName(e.target.value)}/>
-          </label>
-          <label>
-              <p>Mot de passe</p>
-              <input type="password" onChange={e => setPassword(e.target.value)}/>
-          </label>
-          <div>
-              <button type="submit">Se connecter</button>
-          </div>
-      </form>
-      <form onSubmit={handleSubmitRegister}>
-    <label>
-          <h3>Inscription</h3>
-          <p>Nom</p>
-          <input type="text" onChange={e => setUserName(e.target.value)}/>
-      </label>
-      <label>
-          <p>Mot de passe</p>
-          <input type="password" onChange={e => setPassword(e.target.value)}/>
-      </label>
-      <div>
-          <button type="submit">S'inscrire</button>
-      </div>
-  </form>
-  </div>
+    <div className='log-container container'>
+            <form onSubmit={handleSubmitLogin} className="log-form">
+              <label>Connexion</label>
+                <label>Nom d'utilisateur :</label>
+                <input type="text" onChange={e => setUserName(e.target.value)}/>
+
+                <label>Mot de passe :</label>
+                <input type="password" onChange={e => setPassword(e.target.value)}/>
+
+                <div className='submit-btn'>
+                    <button type="submit">Se connecter</button>
+                </div>
+            </form>
+            <div className='log-image'>
+                <img src='img/map-icon.png'></img>
+            </div>
+            <form onSubmit={handleSubmitRegister} className="log-form">
+              <label>Inscription</label>
+                <label>Nom d'utilisateur :</label>
+                <input type="text" onChange={e => setUserName(e.target.value)}/>
+
+                <label>Mot de passe :</label>
+                <input type="password" onChange={e => setPassword(e.target.value)}/>
+
+                <div className='submit-btn'>
+                    <button type="submit">S'inscrire</button>
+                </div>
+            </form>
+            <div className='log-image'>
+                <img src='img/map-icon.png'></img>
+            </div>
+            </div>
   );
 };
 

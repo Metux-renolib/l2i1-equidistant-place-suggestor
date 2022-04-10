@@ -1,28 +1,70 @@
-.entree{
-    margin-right: 0.5em;
+.container{
+    width: 90%;
+    max-width: 1400px;
+    min-width: 400px;
+    margin: 0 auto;
+    display: flex;
 }
-
-fieldset{
-    box-sizing: border-box;
-    width : 50%;
-    padding: 5px;
+.warraper{
     
+    flex-direction: column;
+    align-items: center;
+}
+.formulaire{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.box{
+    background-color: blueviolet;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    margin: 20px 0;
+    padding: 25px;
+    background-color: dodgerblue;
+    border-radius: 20px;
 }
 
-h1{
-    font-family: 'Merriweather', serif;
-    color : rgb(94, 56, 113);
+.box input{
+    outline: none;
+    border: none;
+    height: 40px;
+    border-radius: 20px;
+    margin-bottom: 20px;
 }
 
-h2{
-    font-family : 'Verdana';
-    color : rgb(20, 20, 78);
+.box input::placeholder{
+    padding-left: 20px;
+    font-size: 16px;
 }
 
-legend{
-    font-family : 'Merriweather', serif;
-    color : darkgreen;
-    font-weight : bold;
+.delete-btn,.sub-btn, .add-btn{
+    width: 150px;
+    height: 40px;
+    margin: 10px auto 0;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: dodgerblue;
+    color: aliceblue;
+    border: solid 1px aliceblue;
 }
 
-  
+
+.delete-btn:hover,.sub-btn:hover, .add-btn:hover{
+    background-color: aliceblue;
+    color: dodgerblue;
+}
+
+.group-btn{
+    display: flex;
+    width: 400px;
+    margin: 40px 0;
+    align-items: center;
+    justify-content: space-between;
+}

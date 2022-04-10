@@ -1,0 +1,11 @@
+.Home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Home h2{
+    color: dodgerblue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 40px 0;
+}

@@ -142,43 +142,38 @@ function Formulaire() {
     }
 
   return (
-    <div className="Formulaire">
-      <fieldset>
-        <legend>Informations des participants à la sortie</legend>
-        <form>
+    <div className="container warraper">
+      <form className='formulaire '>
         {inputFields.map((input, index) => {
-            return (
-                  <div key={index}>
-                    <input
-                      class='entree'
-                      name='name'
-                      placeholder='Nom'
-                      value={input.name}
-                      onChange={event => handleFormChange(index, event)}
-                    />
-                    <input
-                      class='entree'
-                      name='adresse'
-                      placeholder='Adresse de départ'
-                      value={input.adresse}
-                      onChange={event => handleFormChange(index, event)}
-                    />
-                    <input
-                      class='entree'
-                      name='disponibilité'
-                      placeholder='Disponibilités (ex : lundi-jeudi)'
-                      value={input.disponibilité}
-                      onChange={event => handleFormChange(index, event)}
-                    />
-                      <button onClick={() => removeFields(index)}>Supprimer</button>
-                      <br/>
-                  </div>
-            )
-          })}
-        </form>
-      </fieldset><br/>
-      <button  class='entree' onClick={addFields}>Ajouter un participant</button>
-      <button onClick={submit}>Lancer la recherche !</button>
+          return (
+            <div className='box' key={index} >
+                <input
+                  name='name'
+                  placeholder='Nom'
+                  value={input.name}
+                  onChange={event => handleFormChange(index, event)}
+                />
+                <input
+                  name='adresse'
+                  placeholder='Adresse de départ'
+                  value={input.adresse}
+                  onChange={event => handleFormChange(index, event)}
+                />
+                <input
+                  name='disponibilité'
+                  placeholder='Disponibilité EX : lundi-jeudi'
+                  value={input.disponibilité}
+                  onChange={event => handleFormChange(index, event)}
+                />
+                  <button onClick={() => removeFields(index)} className="delete-btn">Supprimer</button>
+            </div>
+          )
+        })}
+      </form>
+      <div className='group-btn'>
+        <button onClick={addFields} className="add-btn">Ajouter</button>
+        <button onClick={submit} className="sub-btn">Envoyer</button>
+      </div>
     </div>
   );
 }

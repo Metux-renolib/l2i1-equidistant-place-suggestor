@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/Login.css'
+import Header from './Header';
 
 async function loginUser(credentials) {
   return fetch('http://localhost:5000/login', {
@@ -66,9 +67,6 @@ const Login = ({ setToken }) => {
                     <button type="submit">Se connecter</button>
                 </div>
             </form>
-            <div className='log-image'>
-                <img src='img/map-icon.png'></img>
-            </div>
             <form onSubmit={handleSubmitRegister} className="log-form">
               <label>Inscription</label>
                 <label>Nom d'utilisateur :</label>
@@ -81,9 +79,6 @@ const Login = ({ setToken }) => {
                     <button type="submit">S'inscrire</button>
                 </div>
             </form>
-            <div className='log-image'>
-                <img src='img/map-icon.png'></img>
-            </div>
             </div>
   );
 };

@@ -34,6 +34,8 @@
     height: 40px;
     border-radius: 20px;
     margin-bottom: 20px;
+    padding-left: 20px;
+    font-size: 16px;
 }
 
 .box input::placeholder{

@@ -6,7 +6,7 @@ import '../styles/Home.css';
 const Home = () => {
   return (
   <div className='Home'>
-    <h1>Commençons ! Veuillez rentrer toutes les informations nécessaires : </h1>
+    <h2>Commençons ! Veuillez rentrer toutes les informations nécessaires des participants : </h2>
     <Formulaire/>
     <Map/>
   </div>

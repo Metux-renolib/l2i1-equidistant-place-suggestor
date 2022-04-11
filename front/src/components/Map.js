@@ -21,7 +21,7 @@ const center = {
   lng: 2.320041,
 };
 
-
+let infoBowling = undefined;
 
 function Map() {
   const { isLoaded, loadError } = useLoadScript({
@@ -38,10 +38,9 @@ function Map() {
   const getAdr = async () => {
     try {
       const res = await axios.get("http://localhost:5000/algo");
-      //Affichage des PINs des adresses des participants et bowlings
-      // let adresses = res.data;
-      // let bowling = adresses.pop(); //je récupère l'adresse du bowling dans la data
-      setMarkers(res.data);
+      let tabAdresses = res.data
+      infoBowling = tabAdresses.pop();
+      setMarkers(tabAdresses);
       
       for(var i=0;i<res.data.length -1;i++){
           calculateRoute(res.data[i],res.data[res.data.length -1]);

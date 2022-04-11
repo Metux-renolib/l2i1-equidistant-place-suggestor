@@ -1,4 +1,6 @@
 const axios = require("axios").default;
+const dotenv = require("dotenv");
+const result = dotenv.config();
 
 async function algo(tab) {
     //ALGORITHME : traitement des coordonnées pour trouver le bowling équidistant
@@ -36,13 +38,7 @@ async function algo(tab) {
         let nouvelleAdresse = new CoordonnesAdresse(Number(adresseAEnregistrer[0]), Number(adresseAEnregistrer[1]));
         tabAdresses.push(nouvelleAdresse);
     }
-    nbAdresses = tabAdresses.length; 
-
-    // tabAdresses.push(new CoordonnesAdresse(48.89144266604201, 2.2524894839420146));
-    // tabAdresses.push(new CoordonnesAdresse(48.85555001160246, 2.3325911974317024));
-    // tabAdresses.push(new CoordonnesAdresse(49.01270649675696, 1.913263539766621));
-    // nbAdresses = 3;
-
+    let nbAdresses = tabAdresses.length; 
 
     //Créer tous les cercles passant par deux points
     //Calcul des diamètres de chaque cercle formé par les points deux à deux
@@ -98,31 +94,48 @@ async function algo(tab) {
     var tabFinal = new Array();
     tabFinal = tabAdresses;
 
-    //Comparaison avec les bwolings
+    //Comparaison avec les bowlings
     let adrLL = pointEquidistant.lat.toString() + '%2C' + pointEquidistant.lng.toString();
+    let bowling = undefined;
+    let distMin = undefined;
 
-    const options = {
-    method: 'GET',
-    url: 'https://api.foursquare.com/v3/places/nearby?ll='+adrLL+'&query=bowling&limit=4',
-    headers: {
-        Accept: 'application/json',
-        Authorization: ''
-    }
+    var config = {
+    method: 'get',
+    url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${adrLL}&radius=15000&keyword=bowling_alley&key=${process.env.GOOGLE_MAPS_API_KEY}`,
+    headers: { }
     };
-    
-    let res = await axios.request(options).then(function (response) {
-        tabFinal.push(new CoordonnesAdresse(response.data.results[0].geocodes.main.latitude, response.data.results[0].geocodes.main.longitude));
-        // tabFinal.push(response.data.results[0].location.formatted_address);
-        //tabFinal.push(new CoordonnesAdresse(response.data.results[1].geocodes.main.latitude, response.data.results[1].geocodes.main.longitude));
-        //tabFinal.push(new CoordonnesAdresse(response.data.results[2].geocodes.main.latitude, response.data.results[2].geocodes.main.longitude));
-        console.log("Tab final algo :", tabFinal);
-        return tabFinal;
 
-    }).catch(function (error) {
-        console.error(error);
+    let res = await axios.request(config).then(function (response) {
+        //Je récupère le premier bowling opérationnel de la liste
+        let i=0;
+        if(response.data.results[i].business_status != 'OPERATIONAL'){
+            i++;
+        }
+        else{
+            bowling = response.data.results[i];
+            distMin = Distance(response.data.results[i].geometry.location.lat, response.data.results[i].geometry.location.lng, pointEquidistant.lat, pointEquidistant.lng);
+        }
+
+        //Je vais comparer tous les bowlings opérationnels et garder en mémoire celui qui a la plus courte distance avec le point équidistant
+        for(let j = (i+1); j<response.data.results.length; j++){
+            if(response.data.results[j].business_status == 'OPERATIONAL'){
+                let dist = Distance(response.data.results[j].geometry.location.lat, response.data.results[j].geometry.location.lng, pointEquidistant.lat, pointEquidistant.lng);
+                if(dist<distMin){
+                    bowling = response.data.results[j];
+                    distMin = dist;
+                }
+            }
+        }
+        console.log(bowling)
+        tabFinal.push(new CoordonnesAdresse(bowling.geometry.location.lat, bowling.geometry.location.lng));
+        tabFinal.push(bowling);
+        return tabFinal;
+    })
+    .catch(function (error) {
+        console.log(error);
     });
 
-return res;
+    return res;
 }
 
 module.exports = {

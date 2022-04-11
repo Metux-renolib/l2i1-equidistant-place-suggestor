@@ -136,8 +136,12 @@ async function algo(tab, jour) {
                 jourFinal += jour[i] + " ou ";
             }
             jourFinal += jour[jour.length-1];
+            tabFinal.push(jourFinal);
         }
-        tabFinal.push(jourFinal);
+        else{
+            tabFinal.push(jour);
+        }
+        
         return tabFinal;
     })
     .catch(function (error) {

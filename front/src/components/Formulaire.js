@@ -4,6 +4,8 @@ import Geocode from "react-geocode";
 // import SearchLocationInput from './SearchLocationInput';
 import '../styles/Formulaire.css'
 
+let compteurParticipant = 1;
+
 function Formulaire() {
 
     const [inputFields, setInputFields] = useState([
@@ -27,8 +29,14 @@ function Formulaire() {
     }
 
     const addFields = () => {
+      if(compteurParticipant>5){
+        alert("6 utilisateurs au maximum !")
+      }
+      else{
         let newfield = { name: '', adresse: '' , disponibilité: ''};
         setInputFields([...inputFields, newfield]);
+        compteurParticipant++;
+      }
     }
 
     const dispo = () =>{ 
@@ -115,22 +123,27 @@ function Formulaire() {
 
 
     async function submit(){
-      conversion(inputFields);
-      const dispoFinale = dispo();
-      console.log(dispoFinale);
-      console.log(jours);
-      console.log(inputFields);
-      if(dispoFinale.length === 0){
-        console.log('Réessayez');
+      if(compteurParticipant<2){
+        alert("Veuillez rentrer au minimum deux utilisateurs.")
       }
       else{
-        try {
-          await axios.post("http://localhost:5000/formulaire",{
-            inputFields,
-            dispoFinale
-          })
-        } catch (error) {
-          console.log(error)
+        conversion(inputFields);
+        const dispoFinale = dispo();
+        console.log(dispoFinale);
+        console.log(jours);
+        console.log(inputFields);
+        if(dispoFinale.length === 0){
+          console.log('Réessayez');
+        }
+        else{
+          try {
+            await axios.post("http://localhost:5000/formulaire",{
+              inputFields,
+              dispoFinale
+            })
+          } catch (error) {
+            console.log(error)
+          }
         }
       }
     }

@@ -98,6 +98,7 @@ async function algo(tab, jour) {
     let adrLL = pointEquidistant.lat.toString() + '%2C' + pointEquidistant.lng.toString();
     let bowling = undefined;
     let distMin = undefined;
+    let jourFinal = "";
 
     var config = {
     method: 'get',
@@ -129,7 +130,14 @@ async function algo(tab, jour) {
         console.log(bowling)
         tabFinal.push(new CoordonnesAdresse(bowling.geometry.location.lat, bowling.geometry.location.lng));
         tabFinal.push(bowling);
-        tabFinal.push(jour);
+
+        if(jour.length > 1){
+            for(let k = 0; k<jour.length-1; k++){
+                jourFinal += jour[i] + " ou ";
+            }
+            jourFinal += jour[jour.length-1];
+        }
+        tabFinal.push(jourFinal);
         return tabFinal;
     })
     .catch(function (error) {

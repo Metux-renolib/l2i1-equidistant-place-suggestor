@@ -19,6 +19,11 @@
     padding: 15px 0;
     z-index: 999;
 }
+
+#logoLM{
+    border-radius : 30%;
+}
+
 .logo{
     color: aliceblue;
     font-size: 24px;

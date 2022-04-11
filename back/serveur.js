@@ -42,7 +42,7 @@ app.post("/formulaire",async (req,res)=>{
 })
 
 app.get("/algo", async(req, res)=>{
-  await algo(tab).then(tabFinal => {
+  await algo(tab, jour).then(tabFinal => {
     console.log("TabFinal serveur" , tabFinal);
     res.send(JSON.stringify(tabFinal));
   });

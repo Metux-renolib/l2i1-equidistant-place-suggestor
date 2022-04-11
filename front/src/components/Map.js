@@ -8,6 +8,7 @@ import {
 } from "@react-google-maps/api";
 import{useEffect, useState} from "react";
 import axios from "axios";
+import ReactDOM from 'react-dom';
 
 
 const libraries = ["places"];
@@ -22,6 +23,7 @@ const center = {
 };
 
 let infoBowling = undefined;
+let jourSortie = undefined;
 
 function Map() {
   const { isLoaded, loadError } = useLoadScript({
@@ -39,9 +41,12 @@ function Map() {
     try {
       const res = await axios.get("http://localhost:5000/algo");
       let tabAdresses = res.data
+      jourSortie = tabAdresses.pop();
       infoBowling = tabAdresses.pop();
       setMarkers(tabAdresses);
-      
+      let phrase = <p>C'est décidé ! Vous avez tous rendez-vous {jourSortie} prochain à l'adresse suivante : {infoBowling.name}, {infoBowling.vicinity}</p>;
+      ReactDOM.render(phrase, document.getElementById('adresseEtJour'));
+
       for(var i=0;i<res.data.length -1;i++){
           calculateRoute(res.data[i],res.data[res.data.length -1]);
       }
@@ -51,6 +56,7 @@ function Map() {
       console.log(e);
     }
   };
+
 
   async function calculateRoute(adresse,point) {
           
@@ -154,13 +160,10 @@ function Map() {
            
         ))
       }
-      </GoogleMap>
-   
+      </GoogleMap><br></br>
+      <div id="adresseEtJour"></div>
     </div>
   );
 }
-
-
-
 
 export default Map;

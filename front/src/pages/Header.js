@@ -6,9 +6,9 @@ const Header = () => {
         <div className="header">
             <nav className="navbar container">
                 <div className='logo-box'>
-                    <img src='img/logo.png' width='45px'></img>
+                    <img id ='logoLM' src='img/logo.png' width='60px' ></img>
                     <a href="/" className="logo">
-                        Let's meet
+                        Let's meet !
                     </a>
                 </div>
                 <div id="navbarSupportedContent" className="collapse navbar-collapse">

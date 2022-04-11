@@ -2,7 +2,7 @@ const axios = require("axios").default;
 const dotenv = require("dotenv");
 const result = dotenv.config();
 
-async function algo(tab) {
+async function algo(tab, jour) {
     //ALGORITHME : traitement des coordonnées pour trouver le bowling équidistant
     //Création de l'objet coordonnées
     function CoordonnesAdresse(lat, lng) {
@@ -129,6 +129,7 @@ async function algo(tab) {
         console.log(bowling)
         tabFinal.push(new CoordonnesAdresse(bowling.geometry.location.lat, bowling.geometry.location.lng));
         tabFinal.push(bowling);
+        tabFinal.push(jour);
         return tabFinal;
     })
     .catch(function (error) {

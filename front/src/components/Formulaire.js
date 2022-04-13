@@ -12,6 +12,8 @@ function Formulaire() {
         {name: '', adresse: '', disponibilité: ''}
     ]);
 
+    const [types,setTypes] = useState([''])
+
     const [jours, setJours] = useState({
       lundi : 0,
       mardi : 0,

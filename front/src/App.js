@@ -1,5 +1,4 @@
 import Home from "./pages/Home";
-import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NotFound from './pages/NotFound';
 import About from './pages/About';

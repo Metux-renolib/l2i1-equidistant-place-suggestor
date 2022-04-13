@@ -13,8 +13,8 @@ import ReactDOM from 'react-dom';
 
 const libraries = ["places"];
 const mapContainerStyle = {
-  height: "50vh",
-  width: "50vw",
+  height: "90vh",
+  width: "90vw",
 };
 
 const center = {
@@ -30,6 +30,15 @@ function Map() {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
+
+  const testOpen = () =>{
+    if(infoBowling.opening_hours.open_now){
+      return "oui"
+    }
+    else{
+      return "non"
+    }
+  }
   
   const [markers, setMarkers] = React.useState([]);
   const [routes]=React.useState([]);
@@ -37,6 +46,14 @@ function Map() {
   const [distances]=React.useState([]);
   const [selected, setSelected] = React.useState(null);
   const [pings]= React.useState([]);
+  const [color]= React.useState([]);
+  
+      color.push("#1976d2");
+      color.push("#b919d2");
+      color.push("#d21982");
+      color.push("#19d23e");
+      color.push("#d2d219");
+      color.push("#d24d19");
   const getAdr = async () => {
     try {
       const res = await axios.get("http://localhost:5000/algo");
@@ -92,6 +109,7 @@ function Map() {
   
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
+  
 
   return (
     <div>
@@ -102,15 +120,21 @@ function Map() {
         zoom={11}
         center={center}
         onLoad={onMapLoad}
-        onClick={getAdr}    
+        onClick={function(){
+          getAdr() ; 
+          
+            setSelected(true );
+           
+
+        } } 
       >
-        {routes.map((mark ) => (
+        {routes.map((mark ,i=0) => (
             <DirectionsRenderer
               directions={mark}
               options={{
                 polylineOptions: {
                   zIndex: 50,
-                  strokeColor: "#1976D2",
+                  strokeColor:color[i] ,
                   strokeWeight: 5,
                 },
               }
@@ -121,7 +145,39 @@ function Map() {
           }
          
                  
-         {selected ?pings.map((marker,i=0) => (
+         {selected ?markers.map((marker,i=0) => {
+           if(i===markers.length -1){
+             return (
+                
+                    <InfoWindow
+                    position={marker}
+                    
+           onCloseClick={() => {
+            setSelected(null);
+          }}
+          
+        >
+          <div>
+             
+            
+             <p>Nom :{infoBowling.name }</p>
+             <p>Adresse :{infoBowling.vicinity}</p>
+             <p> Ouvert : {testOpen()}</p>
+              <p>Note :{infoBowling.rating }</p>
+              <p>Nombre d'avis :{infoBowling.user_ratings_total}</p>
+
+              
+                
+             </div>
+             
+           </InfoWindow>
+
+
+                
+             );
+           }
+           else {
+             return (
            
            <InfoWindow
            position={marker}
@@ -139,9 +195,9 @@ function Map() {
            </div>
            
          </InfoWindow>
-          
+             );}
                 
-         ))
+          })
           
         :null } 
           
@@ -150,11 +206,7 @@ function Map() {
            <Marker
            key={`${marker.lat}-${marker.lng}`}
            position={{ lat: marker.lat, lng: marker.lng }}
-           onClick={() => {
-            setSelected(marker);
-           
-          }
-        }
+          
       />
         
            

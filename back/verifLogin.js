@@ -1,4 +1,4 @@
-const {users}= require('./database.json')
+const {users}= require('./database.json');
 
 
 function verifLogin (username,password) {

@@ -162,6 +162,7 @@ function Map() {
             
              <p>Nom :{infoBowling.name }</p>
              <p>Adresse :{infoBowling.vicinity}</p>
+             <p>Type : {infoBowling.types[0].split('_')[0]}</p>
              <p> Ouvert : {testOpen()}</p>
               <p>Note :{infoBowling.rating }</p>
               <p>Nombre d'avis :{infoBowling.user_ratings_total}</p>

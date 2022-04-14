@@ -56,7 +56,7 @@ function Map() {
       color.push("#d24d19");
   const getAdr = async () => {
     try {
-      const res = await axios.get("https://lets-meets.herokuapp.com/algo");
+      const res = await axios.get("http://localhost:5000/algo");
       let tabAdresses = res.data
       jourSortie = tabAdresses.pop();
       infoBowling = tabAdresses.pop();

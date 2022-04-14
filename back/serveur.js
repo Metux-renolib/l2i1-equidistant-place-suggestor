@@ -5,7 +5,6 @@ const cors = require('cors');
 const { algo } = require('./Algo');
 const { verifLogin } = require('./verifLogin');
 const { register } = require('./register');
-require('dotenv').config(); // sert p
 
 app.use(express.urlencoded({extended : true}));
 app.use(express.json());

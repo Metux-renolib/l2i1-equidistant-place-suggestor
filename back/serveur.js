@@ -5,6 +5,7 @@ const cors = require('cors');
 const { algo } = require('./Algo');
 const { verifLogin } = require('./verifLogin');
 const { register } = require('./register');
+require('dotenv').config(); // sert p
 
 app.use(express.urlencoded({extended : true}));
 app.use(express.json());
@@ -48,4 +49,4 @@ app.get("/algo", async(req, res)=>{
   });
 })  
 
-app.listen(5000,()=>{console.log('server started at port 5000')});
+app.listen(process.env.PORT || 5000,()=>{console.log('server started at port 5000')});

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Geocode from "react-geocode";
-// import SearchLocationInput from './SearchLocationInput';
 import '../styles/Formulaire.css'
 
 let compteurParticipant = 1;
@@ -139,7 +138,7 @@ function Formulaire() {
         }
         else{
           try {
-            await axios.post("http://localhost:5000/formulaire",{
+            await axios.post("https://lets-meets.herokuapp.com/formulaire",{
               inputFields,
               dispoFinale
             })

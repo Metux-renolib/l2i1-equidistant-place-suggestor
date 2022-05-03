@@ -7,7 +7,7 @@ This installation manual is a document that describes all the necessary tools to
 # Installation guide
 
 ##  Step 1 : Git installation
-Download git bash here : git-scm.com/downloads <br/>
+Download git bash here : https://github.com/Metux-renolib/l2i1-equidistant-place-suggestor.git <br/>
 
 ##  Step 2 : Clone the repository <br/>
 1. Open Git <br/>
